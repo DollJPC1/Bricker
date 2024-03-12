@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\1\\Documents\\Ckodim\\ספריות\\DanoGameLab\\DanoGameLab.jar"
+    ]
+}
