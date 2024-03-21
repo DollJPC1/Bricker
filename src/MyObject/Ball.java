@@ -13,42 +13,49 @@ public class Ball extends GameObject {
     private Sound collisionSoundBackground;
     private Sound collisionSoundPaddle;
     private statusBall stateBallNow;
-    private CatchBall ballHolder;
+    private statusBall ballHolder;
 
     public Ball(Vector2 topLeftCorner, Vector2 dimensions, Renderable renderable,
-            Sound collisionSoundBackground, Sound collisionSoundPaddle, CatchBall catchBall) {
+            Sound collisionSoundBackground, Sound collisionSoundPaddle, statusBall catchBall) {
         super(topLeftCorner, dimensions, renderable);
-        
+
         this.collisionSoundBackground = collisionSoundBackground;
         this.collisionSoundPaddle = collisionSoundPaddle;
         this.ballHolder = catchBall;
-        catchBall();
     }
 
     public void catchBall() {
-        setVelocity(Vector2.ZERO);
         this.stateBallNow = this.ballHolder;
         ballHolder.launchBall(this);
     }
 
-
     @Override
     public void onCollisionEnter(GameObject other, Collision collision) {
         super.onCollisionEnter(other, collision);
+        if (other.getClass() == Ball.class || other.getClass() == StatusDefiners.class)
+            return;
+        
+
         setVelocity(getVelocity().flipped(collision.getNormal()));
 
         if (other.getClass() == Paddle.class)
             this.collisionSoundPaddle.play();
-        else 
+        else
             this.collisionSoundBackground.play();
-        
-
     }
 
     @Override
     public void update(float arg0) {
         super.update(arg0);
         stateBallNow = this.stateBallNow.launchBall(this);
+    }
+
+    public Sound getCollisionSoundBackground() {
+        return collisionSoundBackground;
+    }
+
+    public Sound getCollisionSoundPaddle() {
+        return collisionSoundPaddle;
     }
 
 }

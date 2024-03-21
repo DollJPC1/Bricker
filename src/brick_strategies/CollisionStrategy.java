@@ -6,5 +6,6 @@ import danogl.collisions.Collision;
 public interface CollisionStrategy {
 
     void onCollision(GameObject thisObj, Collision collision);
+    
 
 }

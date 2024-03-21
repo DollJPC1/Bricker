@@ -22,6 +22,7 @@ public class CatchBall implements statusBall {
 
     @Override
     public statusBall launchBall(GameObject ball) {
+        ball.setVelocity(Vector2.ZERO);
         ball.setCenter(paddle.getCenter().add(Vector2.UP.mult(ballHeight)));
         if (this.inputListener.isKeyPressed(KeyEvent.VK_SPACE))
             return ThrowBall(ball);
