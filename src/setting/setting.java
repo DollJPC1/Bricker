@@ -19,7 +19,7 @@ public final class setting {
         public static final float DISTANCE_BORDER = 80,
                         WINDOW_HEIGHT = 800,
                         WINDOW_WIDTH = 900,
-                        HEARTS = 5,
+                        HEARTS = 55,
                         SIZE_BALL = 50,
                         SIZE_HEART = 50,
                         PADDLE_HEIGHT = 30,

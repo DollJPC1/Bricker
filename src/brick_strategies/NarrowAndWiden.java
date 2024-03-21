@@ -21,15 +21,14 @@ public class NarrowAndWiden implements Effect {
         this.narrowRenderable = narrowRenderable;
         this.widenRenderable = widenRenderable;
     }
-
+    
     @Override
-    public void useStrategy(String tag) {
-        if (tag.equals(NARROW))
-            this.paddle.setDimensions(
-                    paddle.getDimensions().add(Vector2.RIGHT.mult(WIDEN_OR_NARROW * -1)));
+    public void createTag() {
+        Random r = new Random();
+        if (r.nextBoolean())
+            this.tag = NARROW;
         else
-            this.paddle.setDimensions(
-                    paddle.getDimensions().add(Vector2.RIGHT.mult(WIDEN_OR_NARROW)));
+            this.tag = WIDEN;
     }
 
     @Override
@@ -39,19 +38,26 @@ public class NarrowAndWiden implements Effect {
 
     @Override
     public Renderable getRenderable() {
-        Random r = new Random();
-        if (r.nextBoolean()) {
-            this.tag = NARROW;
+        if (this.tag.equals(NARROW)) 
             return this.narrowRenderable;
-        }
-
-        this.tag = WIDEN;
+        
         return this.widenRenderable;
     }
+    
 
     @Override
     public String getTag() {
         return this.tag;
+    }
+
+    @Override
+    public void useStrategy(String tag) {
+        if (tag.equals(NARROW))
+            this.paddle.setDimensions(
+                    paddle.getDimensions().add(Vector2.RIGHT.mult(WIDEN_OR_NARROW * -1)));
+        else
+            this.paddle.setDimensions(
+                    paddle.getDimensions().add(Vector2.RIGHT.mult(WIDEN_OR_NARROW)));
     }
 
 }

@@ -5,6 +5,7 @@ import danogl.util.Vector2;
 
 public interface Effect{
 
+    void createTag();
 
     Vector2 getDimensions();
 

@@ -21,6 +21,7 @@ public class Effects extends RemoveBrickStrategy {
     @Override
     public void onCollision(GameObject thisObj, Collision collision) {
         super.onCollision(thisObj, collision);
+        effect.createTag();
         StatusDefiners statusDefiners = new StatusDefiners(gameObjects, Vector2.ZERO,
                 this.effect.getDimensions(), this.effect.getRenderable(), this.effect);
         statusDefiners.setTag(effect.getTag());
